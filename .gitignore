@@ -129,6 +129,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+medVENV/
 
 # Spyder project settings
 .spyderproject
