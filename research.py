@@ -270,29 +270,47 @@ Workout.rename(columns={'disease':'Disease','workout':'Workout'},inplace=True)
 
 # In[ ]:
 
-
 def otherDetails(Predicted_Dis):
     desc = Description[Description['Disease'] == Predicted_Dis]['Description'].tolist()
 
     diet = Diet[Diet['Disease'] == Predicted_Dis]['Diet'].tolist()
+    diet = diet[0].replace('[','').replace( ']','').replace("'",' ')
+    diet = diet.split(',')
+    
 
     med = Medication[Medication['Disease'] == Predicted_Dis]['Medication'].tolist()
+    med = med[0].replace('[','').replace( ']','').replace("'",' ')
+    med = med.split(',')
 
     prec = Precaution[Precaution['Disease'] == Predicted_Dis][['Precaution_1', 'Precaution_2', 'Precaution_3', 'Precaution_4']].values.tolist()
+    prec = prec[0]
 
     work = Workout[Workout['Disease'] == Predicted_Dis]['Workout'].tolist()
 
     return desc, diet, med, prec , work
 
-
-
-
 desc, diet, med, prec,  work = otherDetails(FinalOutput_PersonDisease)
+
+
 # print("Description:", desc)
+# print(type(desc))
+# print()
+
 # print("Diet:", diet)
+# print(type(diet))
+# print()
+
 # print("Medication:", med)
+# print(type(med))
+# print()
+
 # print("Precaution:", prec)
+# print(type(prec))
+# print()
+
 # print("Workout:", work)
+# print(type(work))
+# print()
 
 
 # In[ ]:

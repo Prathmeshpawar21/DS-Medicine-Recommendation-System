@@ -1,39 +1,51 @@
 from flask import Flask, render_template, request,redirect,jsonify
 from research import *
+import ast
 
 app = Flask(__name__)
 
 
-@app.route('/index.html', methods=['POST','GET'])
+@app.route('/index.html', methods=['POST', 'GET'])
 def index():
-    userInputSymptomList=""
+    userInputSymptomList = ""
     PredictedPersonDisease = ""
-    desc, diet, med, prec,  work = "","","","",""
+    desc, diet, med, prec, work = "", [], [], [], []
+    
     if request.method == 'POST':
         userInputSymptomList = request.form.get("text")
-        
         PredictedPersonDisease = get_prediction(userInputSymptomList)
-        desc, diet, med, prec,  work = otherDetails(PredictedPersonDisease)
         
+        # Assuming these values are returned as string representations of lists
+        desc, diet, med, prec, work = otherDetails(PredictedPersonDisease)
         
-        
-        
-        
-        
-        
-        
-        
-        
+        # Convert string representations to actual lists using ast.literal_eval
+        if isinstance(diet, str):
+            diet = ast.literal_eval(diet)
+        if isinstance(med, str):
+            med = ast.literal_eval(med)
+        if isinstance(prec, str):
+            prec = ast.literal_eval(prec)
+        if isinstance(work, str):
+            work = ast.literal_eval(work)
     
+
         
-    return render_template("index.html",userInputSymptomList=userInputSymptomList,PredictedPersonDisease=PredictedPersonDisease,desc=desc, diet=diet, med=med, prec=prec,  work=work)
+        print(type(diet))
+        print(type(med))
+        print(type(prec))
+        print(type(work))
+
+        
+    return render_template("index.html", 
+                           userInputSymptomList=userInputSymptomList, 
+                           PredictedPersonDisease=PredictedPersonDisease, 
+                           desc=desc, diet=diet, med=med, prec=prec, work=work)
 
 
 
-# @app.route("/index.html")
-# def index():
-#     return render_template("index.html")
-    
+
+
+
 @app.route("/about.html")
 def about():
     return render_template("about.html")
