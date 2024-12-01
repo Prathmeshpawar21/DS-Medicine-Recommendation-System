@@ -178,85 +178,170 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- Medicine Recommendation Section -->
 <section id="get-medicines">
   <div class="container">
       <h2>Find Your Medicine</h2>
 
-      <!-- Form to enter symptoms -->
-      <form action="/index.html" method="POST">
-          <div class="form-group">
-              <label for="symptomInput"><strong> Enter Symptoms :</strong></label>
-              <input type="text" name="text" id="symptomInput" class="form-control" placeholder="e.g., headache, fever" value="{{ userInputSymptomList }}" required />
+
+
+
+      <form action="/index.html#get-medicines" method="POST">
+        <div class="form-group">
+            <label for="symptomInput"><strong>Enter Symptoms:</strong></label>
+            <input type="text" name="text" id="symptomInput" class="form-control" placeholder="e.g., headache, fever" value="{{ userInputSymptomList }}" required />
+            <div id="suggestions" class="suggestions-container"></div>
+        </div >
+        <div class="getyourmedicationsbtnDIV">
+          <button type="submit" class="btn btn-outline-success getyourmedicationsbtn">Get Your Medications</button>
+        </div>
+
+        <div >
+          {% if error_message %}
+        <div class="error-message">
+            <p><strong>{{ error_message }}</strong></p>
+        </div>
+        {% endif %}
+        </div>
+
+
+    </form>
+
+    <!-- Suggestion list will appear here -->
+
+
+
+      <!-- Display matched symptoms if any spelling mistake or fuzzy match -->
+      {% if matched_symptoms %}
+        <div class="matched-symptoms">
+            <h4>Did you mean:</h4>
+            <ul>
+                {% for symptom, matches in matched_symptoms %}
+                    <li>
+                        <strong>{{ symptom }}:</strong>
+                        {% for match, score in matches %}
+                            <div>{{ match }} ({{ score }}% match)</div>
+                        {% endfor %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+      {% endif %}
+
+      <!-- Display error message if some symptoms are invalid -->
+      <!-- {% if error_message %}
+        <div class="error-message">
+            <p><strong>{{ error_message }}</strong></p>
+        </div>
+      {% endif %} -->
+
+      <!-- Display prediction and details if available -->
+      {% if PredictedPersonDisease %}
+      <div id="result-section">
+          <h3>Predicted Disease:</h3> 
+          <h2>{{ PredictedPersonDisease }}</h2>
+
+          <!-- Description Section -->
+          <div class="section">
+              <h4><strong> Description: </strong></h4>
+              <p>{{ desc[0] }}</p>
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
 
- <!-- Display prediction and details if available -->
-{% if PredictedPersonDisease %}
-<div id="result-section">
-    <h3>Predicted Disease:</h3> 
-    <h2>{{ PredictedPersonDisease }}</h2>
+          <!-- Grid container for the last 4 sections -->
+          <div class="grid-container">
+          
+              <!-- Diet Section -->
+              <div class="section">
+                  <h4><strong>Diet:</strong></h4>
+                  <ul>
+                      {% for item in diet %}
+                          <li>{{ item }}</li>
+                      {% endfor %}
+                  </ul>
+              </div>
 
+              <!-- Recommended Medicines Section -->
+              <div class="section">
+                  <h4><strong>Recommended Medicines:</strong></h4>
+                  <ul>
+                      {% for item in med %}
+                          <li>{{ item }}</li>
+                      {% endfor %}
+                  </ul>
+              </div>
 
-    <!-- Description Section -->
-    <div class="section">
-        <h4><strong> Description: </strong></h4>
-        <p>{{ desc[0] }}</p>
-    </div>
+              <!-- Precautions Section -->
+              <div class="section">
+                  <h4><strong>Precautions:</strong></h4>
+                  <ul>
+                      {% for item in prec %}
+                          <li>{{ item }}</li>
+                      {% endfor %}
+                  </ul>
+              </div>
 
-    <!-- Grid container for the last 4 sections -->
-    <div class="grid-container">
-    
-        <!-- Diet Section -->
-        <div class="section">
-            <h4><strong>Diet:</strong></h4>
-            <ul>
-                {% for item in diet %}
-                    <li>{{ item }}</li>
-                {% endfor %}
-            </ul>
-        </div>
+              <!-- Work Recommendations Section -->
+              <div class="section">
+                  <h4><strong>Work Recommendations:</strong></h4>
+                  <ul>
+                      {% for item in work %}
+                          <li>{{ item }}</li>
+                      {% endfor %}
+                  </ul>
+              </div>
 
-        <!-- Recommended Medicines Section -->
-        <div class="section">
-            <h4><strong>Recommended Medicines:</strong></h4>
-            <ul>
-                {% for item in med %}
-                    <li>{{ item }}</li>
-                {% endfor %}
-            </ul>
-        </div>
+          </div>
+      </div>
 
-        <!-- Precautions Section -->
-        <div class="section">
-            <h4><strong>Precautions:</strong></h4>
-            <ul>
-                {% for item in prec %}
-                    <li>{{ item }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-
-        <!-- Work Recommendations Section -->
-        <div class="section">
-            <h4><strong>Work Recommendations:</strong></h4>
-            <ul>
-                {% for item in work %}
-                    <li>{{ item }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-
-    </div>
-</div>
-
-{% else %}
-    <h3>No Disease Found</h3>
-{% endif %}
-
+      {% else %}
+          <p> </p>
+          <h3>No Disease Found Yet, Please Enter Correct Symptoms</h3>
+      {% endif %}
   </div>
 </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -736,6 +821,8 @@
   <!-- footer section -->
 
   <!-- jQery -->
+  <script type="text/javascript" src="./static/script.js"></script>
+
   <script type="text/javascript" src="./static/js/jquery-3.4.1.min.js"></script>
   <!-- popper js -->
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
