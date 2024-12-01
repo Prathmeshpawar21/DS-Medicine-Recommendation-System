@@ -33,6 +33,11 @@ symptom_list = [
     'small_dents_in_nails', 'inflammatory_nails', 'blister', 'red_sore_around_nose', 'yellow_crust_ooze', 'prognosis'
 ]
 
+
+@app.route("/")
+def home_redirect():
+    return redirect("/index.html")  # Redirects `/` to `/index.html`
+
 @app.route('/index.html', methods=['POST', 'GET'])
 def index():
     userInputSymptomList = ""
