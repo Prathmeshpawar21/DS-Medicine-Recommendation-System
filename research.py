@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 # In[1579]:
 
 
-df = pd.read_csv(r"E:\DataScientist\DS-Medicine-Recommendation-System\notebook\dataset\Training.csv")
+df = pd.read_csv(r"./notebook/dataset/Training.csv")
 df.tail()
 
 
@@ -218,12 +218,12 @@ print(FinalOutput_PersonDisease)
 # In[ ]:
 
 
-Description = pd.read_csv(r"E:\DataScientist\DS-Medicine-Recommendation-System\notebook\dataset\description.csv")
-Diet = pd.read_csv(r"E:\DataScientist\DS-Medicine-Recommendation-System\notebook\dataset\diets.csv")
-Medication = pd.read_csv(r"E:\DataScientist\DS-Medicine-Recommendation-System\notebook\dataset\medications.csv")
-Precaution = pd.read_csv(r"E:\DataScientist\DS-Medicine-Recommendation-System\notebook\dataset\precautions_df.csv")
-# symptomSeverity = pd.read_csv(r"E:\DataScientist\DS-Medicine-Recommendation-System\notebook\dataset\Symptom-severity.csv")
-Workout = pd.read_csv(r"E:\DataScientist\DS-Medicine-Recommendation-System\notebook\dataset\workout_df.csv")
+Description = pd.read_csv(r"./notebook/dataset/description.csv")
+Diet = pd.read_csv(r"./notebook/dataset/diets.csv")
+Medication = pd.read_csv(r"./notebook/dataset/medications.csv")
+Precaution = pd.read_csv(r"/notebook/dataset/precautions_df.csv")
+Workout = pd.read_csv(r"./notebook/dataset/workout_df.csv")
+
 
 
 # In[1596]:
