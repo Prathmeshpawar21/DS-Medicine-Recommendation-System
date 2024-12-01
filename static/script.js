@@ -80,3 +80,8 @@ function adjustSuggestionsWidth() {
 // Call this function whenever the page loads or the input box size changes
 window.onload = adjustSuggestionsWidth;
 window.onresize = adjustSuggestionsWidth;
+
+
+function redirectToIndex() {
+    window.location.href = "/index.html#get-medicines";
+}

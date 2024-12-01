@@ -268,3 +268,28 @@ li {
   text-align: center;
   margin: 10px;
 }
+
+.department_section {
+  margin-top: 80px;
+}
+
+.footer_contact h4{
+  color: black;
+  font-size: 20px;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.footer_detail h4{
+  color: black;
+  font-size: 20px;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.footer_link_box h4{
+  color: black;
+  font-size: 20px;
+  font-weight: 300;
+  font-style: normal;
+}
