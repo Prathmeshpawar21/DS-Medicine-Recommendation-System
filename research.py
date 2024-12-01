@@ -221,7 +221,7 @@ print(FinalOutput_PersonDisease)
 Description = pd.read_csv(r"./notebook/dataset/description.csv")
 Diet = pd.read_csv(r"./notebook/dataset/diets.csv")
 Medication = pd.read_csv(r"./notebook/dataset/medications.csv")
-Precaution = pd.read_csv(r"/notebook/dataset/precautions_df.csv")
+Precaution = pd.read_csv(r"./notebook/dataset/precautions_df.csv")
 Workout = pd.read_csv(r"./notebook/dataset/workout_df.csv")
 
 
