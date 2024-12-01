@@ -48,11 +48,11 @@ lc.fit(df['prognosis'])
 labelEnc = lc.transform(df['prognosis'])
 
 # Get Label Encoder Mapping
-print(lc.classes_)
-print(labelEnc.tolist())
+# print(lc.classes_)
+# print(labelEnc.tolist())
 diseaseEncodedList ={}
 for i, label in enumerate(lc.classes_):
-    print(f"{i} -> {label}")
+    # print(f"{i} -> {label}")
     diseaseEncodedList[i] = label
 diseaseEncodedList # example 40 
 
@@ -66,12 +66,12 @@ inputData = df.drop(columns="prognosis")
 OutputData = labelEnc
 
 x_train, x_test, y_train, y_test = train_test_split(inputData,OutputData, train_size=0.90, random_state=42,shuffle=True)
-print(x_train.shape)
-print(y_train.shape)
-print(x_test.shape)
-print(y_test.shape)
+# print(x_train.shape)
+# print(y_train.shape)
+# print(x_test.shape)
+# print(y_test.shape)
 
-print(OutputData.tolist())
+# print(OutputData.tolist())
 
 # print(df['prognosis'].unique())
 
@@ -128,16 +128,16 @@ import pickle as pkl
 # In[1588]:
 
 
-print(x_test)
-print(y_test[10])
+# print(x_test)
+# print(y_test[10])
 
 
 # In[1589]:
 
 
 index = 3
-print(model.predict([x_test.iloc[index].tolist()]))
-print(y_test[index])
+# print(model.predict([x_test.iloc[index].tolist()]))
+# print(y_test[index])
 result = y_test[index]
 
 
