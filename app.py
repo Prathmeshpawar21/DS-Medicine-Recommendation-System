@@ -4,6 +4,7 @@ import ast
 from fuzzywuzzy import process
 import difflib
 
+
 app = Flask(__name__)
 
 symptom_list = [
