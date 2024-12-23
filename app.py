@@ -1,3 +1,4 @@
+# __python_version = 3.13.1
 from flask import Flask, render_template, request,redirect,jsonify
 from research import *
 import ast
